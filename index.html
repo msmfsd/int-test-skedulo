@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Skedulo test</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/solarized-dark.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+         <div class="nav-wrapper">
+           <ul id="nav-mobile" style="padding: 0 20px;">
+             <li>Go to answer: </li>
+             <li><a href="#q1">Q1</a></li>
+             <li><a href="#q2">Q2</a></li>
+             <li><a href="#q3">Q3</a></li>
+             <li><a href="#q4">Q4</a></li>
+           </ul>
+         </div>
+       </nav>
+      <div id="q1" class="row section">
+        <div class="col s12">
+          <h3>Q1 Walk in the park</h3>
+        </div>
+        <div class="col s12">
+          <pre>
+            <code class="javascript">
+  /**
+   * Format numbers if divibiles of 4 or 5 or both
+   * @param {number} n
+   * @returns {*}
+   */
+  const testDivisible = (n) => {
+    return (n % 4 === 0 && n % 5 === 0) ? 'HelloWorld' : (n % 4 === 0) ? 'Hello' : (n % 5 === 0) ? 'World' : n;
+  }
+
+  /**
+   * Print numbers from 1 to 100 with exceptions replaced by statements
+   * @returns {string}
+   */
+  const walkInThePark = () => {
+    return Array.apply(null, {length: 100}).map(Number.call, Number).map((val) => testDivisible(val+1)).join(' ')
+  }
+
+  // RUN CODE
+  console.log(walkInThePark())
+            </code>
+          </pre>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <div id="q2" class="row section">
+        <div class="col s12">
+          <h3>Q2 SQL Query</h3>
+        </div>
+        <div class="col s12">
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <div id="q3">
+        <div class="row section">
+          <div class="col s12">
+            <h3>Q3 Fortune favours the bold</h3>
+            <button id="q3-go" class="btn waves-effect waves-light" type="submit" name="action">Click to load answer</button>
+          </div>
+        </div>
+        <div id="preloader" class="row hide">
+          <div class="col s12">
+            <div class="progress"><div class="indeterminate"></div></div>
+          </div>
+        </div>
+        <div id="table" class="row hide">
+          <div class="col s12">
+            <table>
+              <thead>
+                <tr>
+                  <th data-field="id">Name</th>
+                  <th data-field="name">Company</th>
+                  <th data-field="price">Skills</th>
+                  <th data-field="price">Interests</th>
+                </tr>
+              </thead>
+              <tbody id="result"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="status-panel" class="row hide">
+          <div class="col s12">
+            <div class="card-panel">
+              <i id="status" class="red-text"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <div id="q4" class="row section">
+        <div class="col s12">
+          <h3>Q4 Github API</h3>
+        </div>
+        <div class="col s12">
+          <p>
+            <a class="btn waves-effect waves-light" href="http://codepen.io/msmfsd/pen/xELGyZ" target="_blank">Click here to view the answer on my codepen</a>
+          </p>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+    <script src="/static/bundle.js"></script>
+  </body>
+</html>
