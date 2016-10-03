@@ -16,4 +16,6 @@ const walkInThePark = () => {
 }
 
 // RUN CODE
-console.log(walkInThePark())
+// console.log(walkInThePark())
+
+export default walkInThePark

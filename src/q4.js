@@ -1,4 +1,4 @@
-// NOTE: see full answer here: http://codepen.io/msmfsd/pen/xELGyZ
+import React, { Component } from 'react'
 
 /**
  * Compare 2 strings
@@ -7,29 +7,32 @@
  * @returns {string}
  */
 const similar = (a,b) => {
-  if(a === b) return '100%';
-  const lengthA = a.length;
-  const lengthB = b.length;
-  let equivalency = 0;
-  const minLength = (a.length > b.length) ? b.length : a.length;
-  const maxLength = (a.length < b.length) ? b.length : a.length;
+  if(a === b) return '100%'
+  const lengthA = a.length
+  const lengthB = b.length
+  let equivalency = 0
+  const minLength = (a.length > b.length) ? b.length : a.length
+  const maxLength = (a.length < b.length) ? b.length : a.length
   for(let i = 0; i < minLength; i++) {
     if(a[i] == b[i]) {
-      equivalency++;
+      equivalency++
     }
   }
-  const weight = equivalency / maxLength;
-  return Math.round(weight * 100) + "%";
+  const weight = equivalency / maxLength
+  return Math.round(weight * 100) + "%"
 }
 
 /**
 * @class SearchBar
 */
-class SearchBar extends React.Component {
-  render() {
+class SearchBar extends Component {
+  render () {
     return (
-      <div className="form-group">
-        <input className="form-control" type="text" placeholder="Start typing.." onChange={this.props.onQueryChange} />
+      <div className="row">
+        <div className="input-field col s12">
+          <input placeholder="Start typing.." id="first_name" type="text" onChange={this.props.onQueryChange}/>
+          <label htmlFor="first_name">Search Github users</label>
+        </div>
       </div>
     )
   }
@@ -38,8 +41,8 @@ class SearchBar extends React.Component {
 /**
 * @class GithubViewer
 */
-class GithubViewer extends React.Component {
-  render() {
+class GithubViewer extends Component {
+  render () {
     return (
       <div>
         <ul className="list-group">
@@ -47,18 +50,22 @@ class GithubViewer extends React.Component {
             this.props.data.map( (obj, index) => {
               return (
                 <li key={index} className="list-group-item">
-                  <div className="media">
-                    <div className="media-left">
-                      <a target="_blank" href={obj.html_url}>
-                        <img width="60" className="media-object img-thumbnail" src={obj.avatar_url} alt={obj.login} />
-                      </a>
+                  <a target="_blank" href={obj.html_url}>
+                    <div className="card-panel teal lighten-2 z-depth-1">
+                      <div className="row valign-wrapper">
+                        <div className="col s4">
+                          <img width="60" className="circle responsive-img" src={obj.avatar_url} alt={obj.login} />
+                        </div>
+                        <div className="col s8">
+                          <span className="white-text">
+                            <h4 className="media-heading">{obj.login}</h4>
+                            <p><b>TYPE:</b>{obj.type}</p>
+                            <p><small>SCORE: <i>{similar(obj.login, this.props.tags)}</i></small></p>
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="media-body">
-                      <h3 className="media-heading">{obj.login}</h3>
-                      <p><b>TYPE:</b>{obj.type}</p>
-                      <p><small>SCORE: <i>{similar(obj.login, this.props.tags)}</i></small></p>
-                    </div>
-                  </div>
+                  </a>
                 </li>)
             })
           }
@@ -71,15 +78,15 @@ class GithubViewer extends React.Component {
 /**
 * @class App
 */
-class App extends React.Component {
+export default class App extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       data: [],
       loading: false
     }
-    this.onChange = this.onChange.bind(this);
+    this.onChange = this.onChange.bind(this)
   }
 
   /**
@@ -88,27 +95,26 @@ class App extends React.Component {
    * @returns {string}
    */
   onChange (e) {
-    const that = this;
-    const val = e.currentTarget.value;
-    const tags = val.replace(/\s+/g, "+");
+    const that = this
+    const val = e.currentTarget.value
+    const tags = val.replace(/\s+/g, "+")
     if(val.length < 3) {
-      that.setState({ data: [], loading:false });
-      return false;
+      that.setState({ data: [], loading:false })
+      return false
     } else {
-      that.setState({ loading: true, tags: tags });
+      that.setState({ loading: true, tags: tags })
     }
     $.getJSON("https://api.github.com/search/users?q=" + tags, (data) => {
-      console.log(data)
-      that.setState({ data: data.items, loading:false });
-    });
+      that.setState({ data: data.items, loading:false })
+    })
 
   }
 
-  render() {
+  render () {
     return (
       <div className="well">
         <div className="github-viewer">
-          <h1><img className={this.state.loading ? 'logo loading' : 'logo'} width="60" src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" />&nbsp;Q4 - Github user search</h1>
+          <h2><img className={this.state.loading ? 'logo loading' : 'logo'} width="60" src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" /></h2>
           <SearchBar onQueryChange={this.onChange} />
           <GithubViewer data={this.state.data} tags={this.state.tags} />
         </div>
@@ -116,9 +122,3 @@ class App extends React.Component {
     )
   }
 }
-
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-)

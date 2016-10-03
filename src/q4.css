@@ -1,0 +1,83 @@
+.well {
+  display: inline-block;
+  width: 100%;
+  background-color: #efefef;
+  border-radius: 1px;
+  box-shadow: 0 0 3px rgba(1,1,1,0.25);
+}
+
+h3 {
+  margin-bottom: 2rem;
+}
+
+#q3 {
+  padding-bottom: 2rem;
+}
+
+.divider {
+  background-color: #777;
+}
+
+.section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.list-group {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.list-group-item {
+  width: 48%;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.list-group-item .row {
+  margin-bottom: 0;
+}
+
+.card-panel {
+  padding: 0 20px;
+}
+
+.github-viewer {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+.logo {
+  transition: all .3s ease-in-out;
+  transform: rotate(0) translateX(0);
+  opacity: 1;
+}
+
+.loading {
+  opacity: 0.5;
+  transform: rotate(-10deg) translateX(-5px);
+}
+
+input[type="text"] {
+  height: 60px;
+  font-size: 18px;
+}
+
+::-webkit-input-placeholder {
+   color: #bbb;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #bbb;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #bbb;
+}
+
+:-ms-input-placeholder {
+   color: #bbb;
+}
